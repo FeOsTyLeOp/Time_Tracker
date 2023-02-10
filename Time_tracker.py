@@ -39,13 +39,13 @@ KV = '''
             source: "data/logo/icon_title.png"
 
     MDLabel:
-        text: "STL Time Tracker"
+        text: app.title
         font_style: "Button"
         size_hint_y: None
         height: self.texture_size[1]
 
     MDLabel:
-        text: "feostyleop@gmail.com"
+        text: app.by_who
         font_style: "Caption"
         size_hint_y: None
         height: self.texture_size[1]
@@ -69,12 +69,22 @@ Screen:
                     orientation: 'vertical'
 
                     MDTopAppBar:
-                        title: "STL Time Tracker"
+                        title: app.title
                         elevation: 2
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        right_action_items: [["star-outline", lambda x: app.on_star_click()]]
+                        
+                        
 
                     MDTabs:
                         id: tabs
+                        on_tab_switch: app.on_tab_switch(*args)
+                        size_hint_y: None
+                        height: "48dp"
+                        tab_indicator_anim: False
+                        
+                        
+                    Widget:
 
 
         MDNavigationDrawer:
@@ -83,10 +93,6 @@ Screen:
             ContentNavigationDrawer:
                 id: content_drawer
 '''
-
-
-class Tab(MDFloatLayout, MDTabsBase):
-    pass
 
 
 class ContentNavigationDrawer(BoxLayout):
@@ -110,35 +116,58 @@ class DrawerList(ThemableBehavior, MDList):
         instance_item.text_color = self.theme_cls.primary_color
 
 
+class Tab(MDFloatLayout, MDTabsBase):
+    pass
+
+
 class StlTimeTracker(MDApp):
+    title = "STL Time Tracker"
+    by_who = "by Vitaliy Shpak"
+
     def build(self):
         self.theme_cls.primary_palette = "Orange"
         return Builder.load_string(KV)
 
     def on_start(self):
-        icons_item = {
-            "folder": "My files",
-            "account-multiple": "Shared with me",
-            "star": "Starred",
-            "history": "Recent",
-            "checkbox-marked": "Shared with me",
-            "upload": "Upload",
+        icons_item_menu_Lines = {
+            "account-cowboy-hat": "About author",
+            "youtube": "My YouTube",
+            "coffee": "Donate author",
+            "github": "Source code",
+            "share-variant": "Share app",
+            "shield-sun": "Dark/Light"
         }
-        for icon_name in icons_item.keys():
+
+        for icon_name in icons_item_menu_Lines.keys():
             self.root.ids.content_drawer.ids.md_list.add_widget(
-                ItemDrawer(icon=icon_name, text=icons_item[icon_name])
+                ItemDrawer(icon=icon_name, text=icons_item_menu_Lines[icon_name])
             )
-        #for name_tab in list(md_icons.keys())[15:30]:
-            #self.root.ids.tabs.add_widget(Tab(icon=name_tab, title=name_tab))
+
         icon_tab_items = {
             'clock-plus-outline': 'Активности',
             'playlist-check': 'История',
             'google-analytics': 'График отслеживания'
 
         }
-        for icon_name,name_tab in icon_tab_items.items():
+        for icon_name, name_tab in icon_tab_items.items():
             self.root.ids.tabs.add_widget(
-                Tab(icon =icon_name,title =name_tab)
+                Tab(icon=icon_name, title=name_tab)
             )
+
+    def on_tab_switch(
+            self, instance_tabs, instance_tab, instance_tab_label, tab_text
+    ):
+        '''Called when switching tabs.
+
+        :type instance_tabs: <kivymd.uix.tab.MDTabs object>;
+        :param instance_tab: <__main__.Tab object>;
+        :param instance_tab_label: <kivymd.uix.tab.MDTabsLabel object>;
+        :param tab_text: text or name icon of tab;
+        '''
+
+        print('tab cliked' + tab_text)
+
+    def on_star_click(self):
+        print('Star cliked')
 
 StlTimeTracker().run()
