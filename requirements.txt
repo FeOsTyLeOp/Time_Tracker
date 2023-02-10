@@ -1,2 +1,16 @@
-Kivy~=2.1.0
-kivymd~=1.1.1
+certifi==2023.01.11
+chardet==4.0.0
+docutils==0.16
+idna==2.10
+Kivy==2.1.0
+kivy-deps.angle==0.3.3
+kivy-deps.glew==0.3.1
+kivy-deps.sdl2==0.5.1
+Kivy-Garden==0.1.4
+kivymd @ https://github.com/kivymd/KivyMD/archive/ea97742.zip
+Pillow==8.1.0
+Pygments==2.7.4
+pypiwin32==223
+pywin32==300
+requests==2.25.1
+urllib3==1.26.3
