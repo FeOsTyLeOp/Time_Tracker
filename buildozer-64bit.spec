@@ -7,7 +7,7 @@ title = STL Time Tracker
 package.name = stltimetracker
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.wiseplat
+package.domain = org.stl
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -46,7 +46,7 @@ requirements = python3,kivy==2.1.0,kivymd,https://github.com/kivymd/KivyMD/archi
 presplash.filename = %(source.dir)s/data/logo/Logo_title.png
 
 # (str) Icon of the application
-icon.filename = %(source.dir)s/data/logo/Logo_title.png
+icon.filename = %(source.dir)s/data/logo/icon_title.png
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
 orientation = all

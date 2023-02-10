@@ -1,13 +1,13 @@
 [app]
 
 # (str) Title of your application
-title = Mortgage Calculator
+title = STL Time Tracker
 
 # (str) Package name
-package.name = mortgagecalculator
+package.name = stltimetracker
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.wiseplat
+package.domain = org.stl
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -28,7 +28,7 @@ source.dir = .
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 0.2
+version = 0.1
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -46,7 +46,7 @@ requirements = python3,kivy==2.1.0,kivymd,https://github.com/kivymd/KivyMD/archi
 presplash.filename = %(source.dir)s/data/logo/Logo_title.png
 
 # (str) Icon of the application
-icon.filename = %(source.dir)s/data/logo/Logo_title.png
+icon.filename = %(source.dir)s/data/logo/icon_title.png
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
 orientation = all
