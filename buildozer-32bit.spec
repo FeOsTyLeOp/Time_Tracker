@@ -49,7 +49,7 @@ presplash.filename = %(source.dir)s/data/logo/Logo_title.png
 icon.filename = %(source.dir)s/data/logo/icon_title.png
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
-orientation = all
+orientation = portrait
 
 # (list) List of service to declare
 #services = NAME:ENTRYPOINT_TO_PY,NAME2:ENTRYPOINT2_TO_PY
