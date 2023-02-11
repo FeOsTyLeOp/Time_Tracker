@@ -3,13 +3,19 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import StringProperty, ListProperty
 
 from kivymd.app import MDApp
+from kivymd.font_definitions import fonts
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.icon_definitions import md_icons
 from kivymd.uix.tab import MDTabsBase
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import OneLineIconListItem, MDList
+from kivymd.uix.label import  MDLabel
+from kivymd.uix.menu import MDDropdownMenu
 
-KV = '''
+KV = f'''
+#:import md_icons kivymd.icon_definitions.md_icons
+#:import fonts kivymd.font_definitions.fonts
+
 # Menu item in the DrawerList list.
 <ItemDrawer>:
     theme_text_color: "Custom"
@@ -74,17 +80,46 @@ Screen:
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                         right_action_items: [["star-outline", lambda x: app.on_star_click()]]
                         
-                        
+                       
 
                     MDTabs:
                         id: tabs
                         on_tab_switch: app.on_tab_switch(*args)
-                        size_hint_y: None
                         height: "48dp"
                         tab_indicator_anim: False
                         
-                        
-                    Widget:
+                        Tab:
+                            id: tab1
+                            name: "tab1"
+                            icon: 'clock-plus-outline'
+                            title: "Активности"
+                            
+                            BoxLayout:
+                                orientation: "vertical"
+                                padding: "10dp"
+                                
+                                MDRectangleFlatIconButton:
+                                    icon: "android"
+                                    text: "MDRectangleFlatIconButton"
+                                    theme_text_color: "Custom"
+                                    text_color: "white"
+                                    line_color: "red"
+                                    theme_icon_color: "Custom"
+                                    icon_color: "orange"
+                        Tab:
+                            id: tab2
+                            name: "tab2"
+                            icon: 'playlist-check'
+                            title: "История"
+                        Tab:
+                            id: tab2
+                            name: "tab3"
+                            icon: "google-analytics"
+                            title: "График отслеживания"
+
+
+
+
 
 
         MDNavigationDrawer:
@@ -97,7 +132,6 @@ Screen:
 
 class ContentNavigationDrawer(BoxLayout):
     pass
-
 
 class ItemDrawer(OneLineIconListItem):
     icon = StringProperty()
@@ -143,16 +177,16 @@ class StlTimeTracker(MDApp):
                 ItemDrawer(icon=icon_name, text=icons_item_menu_Lines[icon_name])
             )
 
-        icon_tab_items = {
-            'clock-plus-outline': 'Активности',
-            'playlist-check': 'История',
-            'google-analytics': 'График отслеживания'
+ #       icon_tab_items = {
+ #           'clock-plus-outline': 'Активности',
+ #          'playlist-check': 'История',
+  #          'google-analytics': 'График отслеживания'
 
-        }
-        for icon_name, name_tab in icon_tab_items.items():
-            self.root.ids.tabs.add_widget(
-                Tab(icon=icon_name, title=name_tab)
-            )
+  #      }
+  #      for icon_name, name_tab in icon_tab_items.items():
+  #          self.root.ids.tabs.add_widget(
+   #             Tab(icon=icon_name, title=name_tab)
+   #         )
 
     def on_tab_switch(
             self, instance_tabs, instance_tab, instance_tab_label, tab_text
@@ -169,5 +203,6 @@ class StlTimeTracker(MDApp):
 
     def on_star_click(self):
         print('Star cliked')
+
 
 StlTimeTracker().run()
